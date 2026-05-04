@@ -40,11 +40,11 @@ export const InvitationCard: React.FC = () => {
         initial={{ opacity: 0, scale: 0.88, y: 24 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ delay: 0.25, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-sm"
+        className="relative z-10 w-full max-w-xl"
       >
-        <Floating3DCard className="w-full max-w-sm rounded-3xl border border-blush/60 bg-white shadow-xl shadow-blush/20">
+        <Floating3DCard className="w-full max-w-xl rounded-3xl border border-blush/60 bg-white shadow-xl shadow-blush/20">
           {/* Card inner content */}
-          <div className="p-7 flex flex-col gap-5">
+          <div className="p-5 flex flex-col gap-3">
 
             {/* Top decoration */}
             <div className="flex justify-center gap-2 text-2xl" style={{ transform: 'translateZ(40px)' }}>
