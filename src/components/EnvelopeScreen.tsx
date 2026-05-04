@@ -126,7 +126,7 @@ export const EnvelopeScreen = ({ onOpen }: Props) => {
             className="absolute left-3 right-3 rounded-xl overflow-hidden"
             style={{
               top: 'calc(54% + 4px)',
-              height: 112,
+              height: 88,
               background: 'linear-gradient(160deg, #fffbf8 0%, #fff0f5 100%)',
               border: '1px solid rgba(255,183,197,0.55)',
               boxShadow: '0 4px 16px rgba(232,116,138,0.1)',
@@ -135,7 +135,7 @@ export const EnvelopeScreen = ({ onOpen }: Props) => {
             initial={{ y: 0 }}
             animate={
               isOpening
-                ? { y: -168, transition: { delay: 0.72, duration: 1.15, ease: [0.25, 1, 0.35, 1] } }
+                ? { y: -148, transition: { delay: 0.72, duration: 1.15, ease: [0.25, 1, 0.35, 1] } }
                 : { y: 0 }
             }
           >
@@ -151,11 +151,11 @@ export const EnvelopeScreen = ({ onOpen }: Props) => {
             style={{
               position: 'absolute',
               top: 'calc(54% + 1px)',
-              left: 3,
-              right: 3,
-              bottom: 3,
+              left: 0,
+              right: 0,
+              bottom: 0,
               background: 'linear-gradient(180deg, #FFD6E0 0%, #FBBFCC 100%)',
-              borderRadius: '0 0 14px 14px',
+              borderRadius: '0 0 16px 16px',
               zIndex: 3,
               pointerEvents: 'none',
             }}
@@ -236,13 +236,10 @@ export const EnvelopeScreen = ({ onOpen }: Props) => {
           <motion.div
             key="hint"
             initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: [0.5, 1, 0.5], y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 6, transition: { duration: 0.2 } }}
-            transition={{
-              opacity: { repeat: Infinity, duration: 2, ease: 'easeInOut', delay: 0.8 },
-              y: { delay: 0.5, duration: 0.5 },
-            }}
-            className="mt-10 font-hand text-rose/60 text-base relative z-10"
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="mt-10 font-hand text-rose/70 text-base relative z-10"
           >
             nhấn để mở nhé~
           </motion.div>

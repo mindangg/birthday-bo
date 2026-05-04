@@ -24,14 +24,14 @@ export const LockScreen: React.FC<LockScreenProps> = ({ onUnlock }) => {
     const entered = digits.join('')
     if (entered === config.lockCode) {
       setStatus('correct')
-      setTimeout(() => onUnlock(), 2200)
+      setTimeout(() => onUnlock(), 2000)
     } else {
       setShakeKey(k => k + 1)
       setStatus('wrong')
       setTimeout(() => {
         setDigits([0, 0, 0, 0])
         setStatus('idle')
-      }, 700)
+      }, 860)
     }
   }, [digits, onUnlock])
 
@@ -133,9 +133,9 @@ export const LockScreen: React.FC<LockScreenProps> = ({ onUnlock }) => {
           </div>
 
           {/* Content overlay */}
-          <div className="absolute left-0 right-0 flex flex-col items-center gap-4" style={{ top: 110, bottom: 0, zIndex: 3 }}>
+          <div className="absolute left-0 right-0 flex flex-col items-center gap-4" style={{ top: 120, bottom: 0, zIndex: 3 }}>
             <p className="font-serif text-white/90 text-base text-center leading-snug tracking-wide drop-shadow-sm">
-              Ngày bé chào đời
+              sữa cà phê của tui
             </p>
 
             {/* Digit inputs */}

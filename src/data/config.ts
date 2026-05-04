@@ -1,6 +1,6 @@
 export const config = {
   recipient: 'Bo',
-  lockCode: '0000',
+  lockCode: '0505',
   hint: 'DDMM',
   eventDate: '05/05',
   eventTime: '18h30',
