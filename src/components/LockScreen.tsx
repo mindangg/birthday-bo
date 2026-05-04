@@ -4,9 +4,10 @@ import { config } from '../data/config'
 
 interface LockScreenProps {
   onUnlock: () => void
+  onMusicStart?: () => void
 }
 
-export const LockScreen: React.FC<LockScreenProps> = ({ onUnlock }) => {
+export const LockScreen: React.FC<LockScreenProps> = ({ onUnlock, onMusicStart }) => {
   const [digits, setDigits] = useState<number[]>([0, 0, 0, 0])
   const [status, setStatus] = useState<'idle' | 'correct' | 'wrong'>('idle')
   const [shakeKey, setShakeKey] = useState(0)
@@ -24,6 +25,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({ onUnlock }) => {
     const entered = digits.join('')
     if (entered === config.lockCode) {
       setStatus('correct')
+      onMusicStart?.()
       setTimeout(() => onUnlock(), 2000)
     } else {
       setShakeKey(k => k + 1)

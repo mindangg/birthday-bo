@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { LockScreen } from './components/LockScreen'
 import { EnvelopeScreen } from './components/EnvelopeScreen'
@@ -10,9 +10,26 @@ type Stage = 'lock' | 'envelope' | 'invite'
 
 function App() {
   const [stage, setStage] = useState<Stage>('lock')
+  const [musicStarted, setMusicStarted] = useState(false)
+  const [muted, setMuted] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
+
+  const startMusic = () => {
+    if (!audioRef.current || musicStarted) return
+    audioRef.current.play().then(() => {
+      setMusicStarted(true)
+    }).catch(console.error)
+  }
+
+  const toggleMute = () => {
+    if (!audioRef.current) return
+    audioRef.current.muted = !audioRef.current.muted
+    setMuted(prev => !prev)
+  }
 
   return (
     <div className="relative min-h-screen overflow-hidden font-sans" style={{ cursor: 'none' }}>
+      <audio ref={audioRef} src="/music.MP3" loop preload="auto" />
       <AnimatePresence mode="wait">
         {stage === 'lock' && (
           <motion.div
@@ -22,7 +39,7 @@ function App() {
             transition={{ duration: 0.5 }}
             className="absolute inset-0"
           >
-            <LockScreen onUnlock={() => setStage('envelope')} />
+            <LockScreen onUnlock={() => setStage('envelope')} onMusicStart={startMusic} />
           </motion.div>
         )}
 
@@ -52,6 +69,16 @@ function App() {
         )}
       </AnimatePresence>
       <GiftCursor />
+      {musicStarted && (
+        <button
+          onClick={toggleMute}
+          className="fixed bottom-4 right-4 z-50 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-lg shadow-lg hover:bg-white/30 transition-colors"
+          style={{ cursor: 'default' }}
+          aria-label={muted ? 'Bật nhạc' : 'Tắt nhạc'}
+        >
+          {muted ? '🔇' : '🎵'}
+        </button>
+      )}
     </div>
   )
 }
