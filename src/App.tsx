@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { LockScreen } from './components/LockScreen'
+import { EnvelopeScreen } from './components/EnvelopeScreen'
 import { InvitationCard } from './components/InvitationCard'
 import { GiftCursor } from './components/GiftCursor'
 import './index.css'
 
-type Stage = 'lock' | 'invite'
+type Stage = 'lock' | 'envelope' | 'invite'
 
 function App() {
   const [stage, setStage] = useState<Stage>('lock')
@@ -21,7 +22,20 @@ function App() {
             transition={{ duration: 0.5 }}
             className="absolute inset-0"
           >
-            <LockScreen onUnlock={() => setStage('invite')} />
+            <LockScreen onUnlock={() => setStage('envelope')} />
+          </motion.div>
+        )}
+
+        {stage === 'envelope' && (
+          <motion.div
+            key="envelope"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.04 }}
+            transition={{ duration: 0.55 }}
+            className="absolute inset-0"
+          >
+            <EnvelopeScreen onOpen={() => setStage('invite')} />
           </motion.div>
         )}
 

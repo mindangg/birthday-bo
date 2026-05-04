@@ -24,7 +24,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({ onUnlock }) => {
     const entered = digits.join('')
     if (entered === config.lockCode) {
       setStatus('correct')
-      setTimeout(() => onUnlock(), 1800)
+      setTimeout(() => onUnlock(), 2200)
     } else {
       setShakeKey(k => k + 1)
       setStatus('wrong')
@@ -86,7 +86,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({ onUnlock }) => {
             }
             transition={
               isCorrect
-                ? { duration: 0.55, ease: [0.4, 0, 0.2, 1] }
+                ? { duration: 1, ease: [0.4, 0, 0.2, 1] }
                 : { duration: 0.2 }
             }
           >

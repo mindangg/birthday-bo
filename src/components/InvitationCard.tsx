@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Floating3DCard } from './ui/3d-card'
+import { Balloons, type BalloonsHandle } from './ui/balloons'
 import { config } from '../data/config'
 
 export const InvitationCard: React.FC = () => {
+  const balloonsRef = useRef<BalloonsHandle | null>(null)
+
+  useEffect(() => {
+    const t = setTimeout(() => balloonsRef.current?.launchAnimation(), 900)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-cream via-petal/30 to-blush/20 px-4 py-10">
 
@@ -123,15 +131,7 @@ export const InvitationCard: React.FC = () => {
         </Floating3DCard>
       </motion.div>
 
-      {/* Bottom note */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.6 }}
-        className="relative z-10 mt-6 text-ink/35 text-xs font-sans tracking-wide"
-      >
-        di chuột lên thiệp để xem phép màu nhỏ ✨
-      </motion.p>
+      <Balloons ref={balloonsRef} type="default" />
     </div>
   )
 }

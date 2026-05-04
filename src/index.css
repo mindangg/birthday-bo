@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #E8748A;
+  --primary-foreground: #fff;
+  --secondary: #FFD6E0;
+  --secondary-foreground: #3D2C2C;
+  --destructive: #ef4444;
+  --destructive-foreground: #fff;
+  --ring: #E8748A;
+  --border: #FFB7C5;
+  --input: #FFB7C5;
+  --background: #FFF8F0;
+  --accent: #FFD6E0;
+  --accent-foreground: #3D2C2C;
+}
+
 * {
   box-sizing: border-box;
 }
